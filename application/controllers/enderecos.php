@@ -44,7 +44,7 @@ class Enderecos extends Controller {
 
     public function add() {
         if (isset($_POST['submit'])) {
-            $endereco = $this->post_to_obj(array('cep', 'logradouro', 'bairro', 'cidade', 'estado'), new Endereco);
+            $endereco = $this->post_to_obj(array('cep', 'logradouro', 'bairro', 'cidade', 'estado'), new Endereco());
             $endereco->save();
             redirect('enderecos');
         }
@@ -59,20 +59,20 @@ class Enderecos extends Controller {
 
     public function edit($id) {
         if (isset($_POST['submit'])) {
-            $endereco = $this->post_to_obj(array('id', 'cep', 'logradouro', 'bairro', 'cidade', 'estado'), new Endereco);
+            $endereco = $this->post_to_obj(array('id', 'cep', 'logradouro', 'bairro', 'cidade', 'estado'), new Endereco());
             $endereco->update();
             redirect('enderecos');
         }
         $endereco = new Endereco();
         $endereco->getById($id);
-        $this->data['user_edit'] = $endereco->to_array();
+        $this->data['end_edit'] = $endereco->to_array();
         $this->render('enderecos/edit');
     }
 
     public function view_simple($id) {
         $endereco = new Endereco();
         $endereco->getById($id);
-        $this->data['user_view'] = $endereco->to_array();
+        $this->data['end_view'] = $endereco->to_array();
         $this->render('enderecos/view_simple');
     }
 

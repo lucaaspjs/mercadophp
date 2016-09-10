@@ -2,13 +2,13 @@
 
     <div id="top" class="row">
         <div class="col-sm-3">
-            <h2>Endereços</h2>
+            <h2>Cargos</h2>
         </div>
         <div class="col-sm-6">
-            <form action="<?= base_url('enderecos/search') ?>" method="post">
+            <form action="<?= base_url('cargos/search') ?>" method="post">
                 <div class="input-group h2">
                     <input name = "search" class = "form-control" id = "search" type = "text"
-                           placeholder = "Pesquisar Endereços" value ="<?= $search ?>">
+                           placeholder = "Pesquisar Cargos" value ="<?= $search ?>">
                     <span class="input-group-btn">
                         <button class="btn btn-primary" type="submit">
                             <span class="glyphicon glyphicon-search"></span>
@@ -18,9 +18,11 @@
             </form>
         </div>
         <div class="col-sm-3">
-            <a href="<?= base_url('enderecos/add') ?>" class="btn btn-primary pull-right h2">Novo endereço</a>
+            <a href="<?= base_url('cargos/add') ?>" class="btn btn-primary pull-right h2">Novo cargo</a>
         </div>
     </div> <!-- /#top -->
+
+
     <hr />
     <div id="list" class="row">
 
@@ -28,26 +30,23 @@
             <table class="table table-striped" cellspacing="0" cellpadding="0">
                 <thead>
                     <tr>
-                        <th class="col-md-1">ID</th>
-                        <th class="col-md-2">CEP</th>
-                        <th class="col-md-3">Logradouro</th>
-                        <th class="col-md-3">Bairro</th>
+                        <th class="col-md-3">ID</th>
+                        <th class="col-md-3">Descrição</th>
+                        <th class="col-md-3">Salário</th>
                         <th class="actions" class="col-md-3">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($rows as $row) { ?>
-                        <tr id = "<?= $row['id'] ?>">
+                        <tr>
                             <td><?= $row['id'] ?></td>
-                            <td><?= $row['cep'] ?></td>
-                            <td><?= $row['logradouro'] ?></td>
-                            <td><?= $row['bairro'] ?> </td>
-                            <td class="actions" >
-                                <a class='btn btn-success btn-xs' href="<?= base_url("enderecos/view_simple/" . $row['id']) ?>">Visualizar</a>
-                                <a class='btn btn-warning btn-xs' href="<?= base_url("enderecos/edit/" . $row['id']) ?>">Editar</a>
+                            <td><?= $row['descricao'] ?></td>
+                            <td><?= $row['salario'] ?></td>
+                            <td class='actions'>
+                                <a class='btn btn-success btn-xs' href=" <?= base_url("cargos/view_simple/" . $row['id']) ?>">Visualizar</a>
+                                <a class='btn btn-warning btn-xs' href="<?= base_url("cargos/edit/" . $row['id']) ?>">Editar</a>
                                 <a class="btn btn-danger btn-xs" id="<?= $row['id'] ?>" onclick="setId(this.id)" href="#"
                                    data-toggle="modal" data-target="#delete-modal">Excluir</a>
-
                             </td>
                         </tr>
                     <?php } ?>
@@ -56,6 +55,7 @@
         </div>
 
     </div> <!-- /#list -->
+
 
     <div id="bottom" class="row">
         <div class="col-md-12">
@@ -76,7 +76,7 @@
                 Deseja realmente excluir este item?
             </div>
             <div class="modal-footer">
-                <button type="button" onclick="apaga('enderecos')" class="btn btn-primary">Sim</button>
+                <button type="button" onclick="apaga('cargos')" class="btn btn-primary">Sim</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">N&atilde;o</button>
             </div>
         </div>
