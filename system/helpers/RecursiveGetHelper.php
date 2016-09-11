@@ -83,3 +83,31 @@ function getCategorias() {
     }
     return $return;
 }
+
+function getProdutos() {
+    $produto = new Produto();
+    $produto->select(array('id','descricao'));
+    $produto->get();
+    $produtos = $produto->all_to_array();
+    $return = array();
+    foreach ($produtos as $temp) {
+        $id = $temp['id'];
+        $name = $temp['descricao'];
+        $return[] = array('id' => $id, 'nome' => $name);
+    }
+    return $return;
+}
+
+function getPedidos() {
+    $pedido = new Pedido();
+    $pedido->select(array('id'));
+    $pedido->get();
+    $pedidos = $pedido->all_to_array();
+    $return = array();
+    foreach ($pedidos as $temp) {
+        $id = $temp['id'];
+        $name = $temp['id'];
+        $return[] = array('id' => $id, 'nome' => $name);
+    }
+    return $return;
+}

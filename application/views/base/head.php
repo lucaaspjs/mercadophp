@@ -30,6 +30,7 @@
                         <li><a href="<?= base_url('clientes') ?>">Clientes</a></li>
                         <li><a href="<?= base_url('funcionarios') ?>">Funcionários</a></li>
                         <li><a href="<?= base_url('pedidos') ?>">Pedidos</a></li>
+                        <li><a href="<?= base_url('itens') ?>">Itens</a></li>
                         <li><a href="<?= base_url('fornecedores') ?>">Fornecedores</a></li>
                         <li><a href="<?= base_url('produtos') ?>">Produtos</a></li>
                         <li><a href="<?= base_url('categorias') ?>">Categorias</a></li>

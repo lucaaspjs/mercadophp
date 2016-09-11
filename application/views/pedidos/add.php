@@ -7,7 +7,7 @@
             <div class="form-group col-md-4">
                 <label for="funcionario">Funcionário</label>
                 <select name="funcionario_id" id="funcionario" class="form-control">
-                    <?php foreach ($func_edit as $end) { ?>
+                    <?php foreach ($item_edit as $end) { ?>
                         <option value="<?= $end['id'] ?>"> <?= $end['nome'] ?></option>
                     <?php } ?>
                 </select>
