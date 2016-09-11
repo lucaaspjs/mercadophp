@@ -48,7 +48,8 @@ class Fornecedores extends Controller {
             $fornecedor->save();
             redirect('fornecedores');
         }
-        $this->data['ends_edit'] = $this->getEnderecos();
+        $this->load->native_helper('RecursiveGetHelper');
+        $this->data['ends_edit'] = getEnderecos();
         $this->render('fornecedores/add');
     }
 
@@ -60,14 +61,15 @@ class Fornecedores extends Controller {
 
     public function edit($id) {
         if (isset($_POST['submit'])) {
-            $fornecedor = $this->post_to_obj(array('id', 'nome', 'telefone','cnpj','endereco_id'), new Fornecedor());
+            $fornecedor = $this->post_to_obj(array('id', 'nome', 'telefone', 'cnpj', 'endereco_id'), new Fornecedor());
             $fornecedor->update();
             redirect('fornecedores');
         }
         $fornecedor = new Fornecedor();
         $fornecedor->getById($id);
         $this->data['forn_edit'] = $fornecedor->to_array();
-        $this->data['ends_edit'] = $this->getEnderecos();
+        $this->load->native_helper('RecursiveGetHelper');
+        $this->data['ends_edit'] = getEnderecos();
         $this->render('fornecedores/edit');
     }
 
@@ -78,20 +80,6 @@ class Fornecedores extends Controller {
         $this->data['forn_view'] = $fornecedor->to_array();
         $this->data['end_view'] = $fornecedor->endereco->to_array();
         $this->render('fornecedores/view_simple');
-    }
-
-    private function getEnderecos() {
-        $endereco = new Endereco();
-        $endereco->select(array('id', 'logradouro', 'cidade', 'estado'));
-        $endereco->get();
-        $ends = $endereco->all_to_array();
-        $return = array();
-        foreach ($ends as $end) {
-            $id = $end['id'];
-            $name = $end['logradouro'] . ", " . $end['cidade'] . ", " . $end['estado'];
-            $return[] = array('id' => $id, 'name' => $name);
-        }
-        return $return;
     }
 
 }
