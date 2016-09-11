@@ -55,3 +55,31 @@ function getClientes() {
     }
     return $return;
 }
+
+function getFornecedores() {
+    $fornecedor = new Fornecedor();
+    $fornecedor->select(array('id', 'nome', 'cnpj'));
+    $fornecedor->get();
+    $fornecedores = $fornecedor->all_to_array();
+    $return = array();
+    foreach ($fornecedores as $temp) {
+        $id = $temp['id'];
+        $name = $temp['nome'] . ", " . $temp['cnpj'];
+        $return[] = array('id' => $id, 'nome' => $name);
+    }
+    return $return;
+}
+
+function getCategorias() {
+    $categoria = new Categoria();
+    $categoria->select(array('id', 'nome'));
+    $categoria->get();
+    $categorias = $categoria->all_to_array();
+    $return = array();
+    foreach ($categorias as $temp) {
+        $id = $temp['id'];
+        $name = $temp['nome'];
+        $return[] = array('id' => $id, 'nome' => $name);
+    }
+    return $return;
+}

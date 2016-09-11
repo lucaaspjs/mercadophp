@@ -5,7 +5,7 @@
  *
  * @author Lucaas
  */
-class funcionarios extends Controller {
+class Funcionarios extends Controller {
 
     public function __construct() {
         parent::__construct();
