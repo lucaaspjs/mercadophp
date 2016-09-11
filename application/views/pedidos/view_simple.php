@@ -39,6 +39,32 @@
             <p><?= $cli_view['telefone'] ?></p>
         </div>
     </div>
+    
+    <div class="row">
+        <div class="table-responsive col-md-12">
+            <table class="table table-striped" cellspacing="0" cellpadding="0">
+                <thead>
+                    <tr>
+                        <th class="col-md-3">Produto</th>
+                        <th class="col-md-3">Valor Unitário</th>
+                        <th class="col-md-2">Quantidade</th>
+                        <th class="col-md-3">Valor Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($itens as $row) {
+                        ?>
+                        <tr>
+                            <td><?= $row['produto'] ?></td>
+                            <td><?= $row['valor_unit'] ?></td>
+                            <td><?= $row['quantidade'] ?></td>
+                            <td><?= $row['valor_total'] ?></td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
     <hr />
     <div id="actions" class="row">
         <div class="col-md-12">

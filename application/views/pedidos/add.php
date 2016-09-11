@@ -5,7 +5,7 @@
     <form action="<?= base_url('pedidos/add') ?>" method="post">
         <div class="row">
             <div class="form-group col-md-4">
-                <label for="funcionario">Endereço</label>
+                <label for="funcionario">Funcionário</label>
                 <select name="funcionario_id" id="funcionario" class="form-control">
                     <?php foreach ($func_edit as $end) { ?>
                         <option value="<?= $end['id'] ?>"> <?= $end['nome'] ?></option>
@@ -13,7 +13,7 @@
                 </select>
             </div>
             <div class="form-group col-md-4">
-                <label for="cliente">Endereço</label>
+                <label for="cliente">Cliente</label>
                 <select name="cliente_id" id="cliente" class="form-control">
                     <?php foreach ($cli_edit as $end) { ?>
                         <option value="<?= $end['id'] ?>"> <?= $end['nome'] ?></option>

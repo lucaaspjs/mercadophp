@@ -26,6 +26,7 @@ class Pedidos extends Controller {
     }
 
     #Este método tem a mesma função do Model::RecursiveGet, mas só busca pelo relacionamento uma vez
+
     private function setRowsIndexTable(array $data) {
         $rows = array();
 
@@ -78,6 +79,36 @@ class Pedidos extends Controller {
         redirect('pedidos');
     }
 
+    public function edit($id) {
+        if (isset($_POST['submit'])) {
+            redirect('pedidos');
+        }
+        $pedido = new Pedido();
+        $pedido->getById($id);
+        $pedido->recursiveGet();
+        $this->data['ped_edit'] = $pedido->to_array();
+        $this->data['func_edit'] = $pedido->funcionario->to_array();
+        $this->data['cli_edit'] = $pedido->cliente->to_array();
+        $this->render('pedidos/edit');
+    }
+
+    private function getItens($pedido_id) {
+        $itens = new Item();
+        $itens->where("pedido_id", $pedido_id);
+        $itens->get();
+        $array = array();
+
+        foreach ($itens->all_to_array() as $item) {
+            $prod = new Produto();
+            $prod->getById($item['produto_id']);
+            $produto = $prod->to_array();
+            $array[] = array('produto' => $produto['descricao'], 'valor_unit' => $produto['valor'],
+                'quantidade' => $item['quantidade'], 'valor_total' => $item['valor_total']);
+        }
+
+        $this->data['itens'] = $array;
+    }
+
     public function view_simple($id) {
         $pedido = new Pedido();
         $pedido->getById($id);
@@ -85,6 +116,7 @@ class Pedidos extends Controller {
         $this->data['ped_view'] = $pedido->to_array();
         $this->data['func_view'] = $pedido->funcionario->to_array();
         $this->data['cli_view'] = $pedido->cliente->to_array();
+        $this->getItens($id);
         $this->render('pedidos/view_simple');
     }
 
