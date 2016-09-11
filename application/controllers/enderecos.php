@@ -15,7 +15,7 @@ class Enderecos extends Controller {
     public function index($page = 0) {
         $this->load->native_helper('PaginationHelper');
         $endereco = new Endereco();
-        $this->data['pagination'] = pagination('enderecos', $endereco, 10, 'index');
+        $this->data['pagination'] = pagination('enderecos', $endereco, 10);
         $endereco->limit(10);
         $endereco->offset(($page * 10));
         $endereco->get();

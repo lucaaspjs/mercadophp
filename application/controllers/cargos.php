@@ -15,7 +15,7 @@ class Cargos extends Controller {
     public function index($page = 0) {
         $this->load->native_helper('PaginationHelper');
         $cargo = new Cargo();
-        $this->data['pagination'] = pagination('cargos', $cargo, 10, 'index');
+        $this->data['pagination'] = pagination('cargos', $cargo, 10);
         $cargo->limit(10);
         $cargo->offset(($page * 10));
         $cargo->get();
